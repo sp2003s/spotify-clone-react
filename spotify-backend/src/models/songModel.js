@@ -8,3 +8,6 @@ const songSchema = new mongoose.Schema({
     file: {type: String, required: true},
     duration: {type: String, required: true},
 })
+
+const songModel = mongoose.models.song || mongoose.model("song", songSchema)
+export default songModel;
