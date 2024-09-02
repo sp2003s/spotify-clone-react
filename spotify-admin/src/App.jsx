@@ -6,12 +6,15 @@ import AddSong from './pages/AddSong'
 import AddAlbum from './pages/AddAlbum'
 import ListSong from './pages/ListSong'
 import ListAlbum from './pages/ListAlbum'
+import Sidebar from './components/Sidebar';
 
 const App = () => {
   return (
     <div className='flex item-start min-h-screen'>
 
       <ToastContainer />
+
+      <Sidebar />
 
       <div className='flex-1 h-screen overflow-y-scroll bg-[#F3FFF7]'>
 
