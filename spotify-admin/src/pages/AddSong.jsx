@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { assets } from '../assets/assets'
+import axios from 'axios'
 
 const AddSong = () => {
 
@@ -11,16 +12,34 @@ const AddSong = () => {
   const [loading, setLoading] = useState(false)
   const [albumData, setAlbumData] = useState([]);
 
-  return (
-    <form className='flex flex-col items-start gap-8 text-gray-600'>
+  const onSubmitHandler = async (e) => {
+
+    e.preventDefault();
+
+    try {
+      
+      
+
+    } catch (error) {
+      
+    }
+
+  }
+
+  return loading ? (
+    <div className='grid place-items-center min-h-[80vh]'>
+      <div className='w-16 h-16 place-self-center border-4 border-gray-400 border-t-green-800 rounded-full animate-spin'></div>
+    </div>
+  ) : (
+    <form onSubmit={onSubmitHandler()} className='flex flex-col items-start gap-8 text-gray-600'>
 
       <div className='flex gap-8'>
         <div className='flex flex-col gap-4'>
           
           <p>Upload Song</p>
-          <input type="file" id='song' accept='audio/*' hidden/>
+          <input onChange={(e) => setSong(e.target.files[0])} type="file" id='song' accept='audio/*' hidden/>
           <label htmlFor="song">
-            <img src={assets.upload_song} className='w-24 cursor-pointer' alt="" />
+            <img src={song ? assets.upload_added : assets.upload_song} className='w-24 cursor-pointer' alt="" />
           </label>
         
         </div>
@@ -28,9 +47,9 @@ const AddSong = () => {
         <div className='flex flex-col gap-4'>
 
           <p>Upload Image</p>
-          <input type="file" id='image' accept='image/*' hidden/>
+          <input onChange={(e) => setImage(e.target.files[0])} type="file" id='image' accept='image/*' hidden/>
           <label htmlFor="image">
-            <img src={assets.upload_area} className='w-24 cursor-pointer' alt="" />
+            <img src={image ? URL.createObjectURL(image) : assets.upload_area} className='w-24 cursor-pointer' alt="" />
           </label>
 
         </div>
@@ -38,18 +57,18 @@ const AddSong = () => {
 
       <div className='flex flex-col gap-2.5'>
         <p>Song Name</p>
-        <input className='bg-transparent outline-green-600 border-2 border-gray-400 p-2.5 w-[max(40vw,250px)]' placeholder='Type Here' type="text" required/>
+        <input onChange={(e) => setName(e.target.value)} value={name} className='bg-transparent outline-green-600 border-2 border-gray-400 p-2.5 w-[max(40vw,250px)]' placeholder='Type Here' type="text" required/>
       </div>
 
       <div className='flex flex-col gap-2.5'>
         <p>Song Description</p>
-        <input className='bg-transparent outline-green-600 border-2 border-gray-400 p-2.5 w-[max(40vw,250px)]' placeholder='Type Here' type="text" required/>
+        <input onChange={(e) => setDesc(e.target.value)} value={desc} className='bg-transparent outline-green-600 border-2 border-gray-400 p-2.5 w-[max(40vw,250px)]' placeholder='Type Here' type="text" required/>
       </div>
       
       <div className='flex flex-col gap-2.5'>
         <p>Album</p>
 
-        <select className='bg-transparent outline-green-600 border-2 border-gray-400 p-2.5 w-[150px]'>
+        <select onChange={(e) => setAlbum(e.target.value)} value={album} className='bg-transparent outline-green-600 border-2 border-gray-400 p-2.5 w-[150px]'>
           <option value="none">None</option>
         </select>
       </div>
