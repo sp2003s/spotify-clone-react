@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { assets } from '../assets/assets'
 
 const AddSong = () => {
+
+  const [image, setImage] = useState(false)
+  const [song, setSong] = useState(false)
+  const [name, setName] = useState("")
+  const [desc, setDesc] = useState("")
+  const [album, setAlbum] = useState("none")
+  const [loading, setLoading] = useState(false)
+  const [albumData, setAlbumData] = useState([]);
+
   return (
     <form className='flex flex-col items-start gap-8 text-gray-600'>
 
