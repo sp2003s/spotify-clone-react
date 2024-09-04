@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { assets } from '../assets/assets'
 import axios from 'axios'
+import { url } from '../App'
 
 const AddSong = () => {
 
@@ -18,7 +19,16 @@ const AddSong = () => {
 
     try {
       
-      
+      const formData = new FormData();
+
+      formData.append('name', name);
+      formData.append('desc', desc);
+      formData.append('image', image);
+      formData.append('audio', song);
+      formData.append('album', album);
+
+      const response = await axios.post(`${url}/api/song/add`, formData)
+
 
     } catch (error) {
       
