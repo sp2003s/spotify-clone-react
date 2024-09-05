@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { assets } from '../assets/assets'
 import axios from 'axios'
 import { url } from '../App'
+import { toast } from 'react-toastify'
 
 const AddSong = () => {
 
@@ -16,7 +17,7 @@ const AddSong = () => {
   const onSubmitHandler = async (e) => {
 
     e.preventDefault();
-
+    setLoading(true)
     try {
       
       const formData = new FormData();
@@ -29,10 +30,22 @@ const AddSong = () => {
 
       const response = await axios.post(`${url}/api/song/add`, formData)
 
+      if(response.data.success) {
+        toast.success("Song Added")
+        setName("")
+        setDesc("")
+        setAlbum("none")
+        setImage(false)
+        setSong(false)
+      }
+      else{
+        toast.error("Something went wrong")
+      }
 
     } catch (error) {
-      
+      toast.error("Error occoured")
     }
+    setLoading(false)
 
   }
 
