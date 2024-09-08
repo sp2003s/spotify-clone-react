@@ -15,19 +15,17 @@ const AddAlbum = () => {
   const onSubmitHandler = async (e) => {
 
     e.preventDefault();
-
     setLoading(true);
 
     try {
-      
       const formData = new FormData();
       
       formData.append('name', name)
       formData.append('desc', desc)
       formData.append('image', image)
-      formData.append('bgColour', colour)
+      formData.append('bgColor', colour)
 
-      const response = await axios.post(`${url}/api/ablum/add`, formData)
+      const response = await axios.post(`${url}/api/album/add`, formData)
 
       if(response.data.success){
         toast.success("Album Added");
@@ -40,7 +38,6 @@ const AddAlbum = () => {
       }
     
     } catch (error) {
-      console.log(error);
       toast.error("Error occoured")
     }
 
