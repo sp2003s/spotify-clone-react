@@ -22,6 +22,10 @@ const ListAlbum = () => {
     }
   }
 
+  useEffect(() => {
+    fetchAlbums();
+  }, [])
+
   return (
     <div>
       
