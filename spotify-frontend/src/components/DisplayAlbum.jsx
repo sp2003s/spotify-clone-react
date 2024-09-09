@@ -1,22 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import { useParams } from "react-router-dom";
-import {
-  albumsData,
-  assets,
-  songsData,
-} from "../assets/frontend-assets/assets";
+import {assets} from "../assets/frontend-assets/assets";
 import { PlayerContext } from "../context/PlayerContext";
 
 const DisplayAlbum = () => {
   const { id } = useParams();
-  // console.log(id);
-  const albumData = albumsData[id];
-  // console.log(albumData);
+  const [albumData, setAlbumData] = useState("");
 
-  const {playWithId} = useContext(PlayerContext);
+  const {playWithId, albumsData, songsData} = useContext(PlayerContext);
 
-  return (
+  useEffect(() => {
+    albumsData.map((item) => {
+      if(item._id === id){
+        setAlbumData(item);
+      }
+    })
+  }, [])
+
+  return albumData ? (
     <>
       <Navbar />
 
@@ -72,7 +74,7 @@ const DisplayAlbum = () => {
         </div>
       ))}
     </>
-  );
+  ) : null
 };
 
 export default DisplayAlbum;
