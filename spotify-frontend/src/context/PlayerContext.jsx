@@ -71,7 +71,7 @@ const PlayerContextProvider = (props) =>{
     const getAlbumsData = async () => {
         try {
             const response = await axios.get(`${url}/api/album/list`);
-            setAlbumsData(response.data.album);
+            setAlbumsData(response.data.albums);
         } catch (error) {
             
         }
@@ -79,20 +79,6 @@ const PlayerContextProvider = (props) =>{
 
     const seekSong = async(e) => {
         audioRef.current.currentTime = ((e.nativeEvent.offsetX / seekBg.current.offsetWidth)*audioRef.current.duration)
-    }
-
-    const contextValue = {
-        audioRef, seekBar, seekBg,
-        track, setTrack,
-        playStatus, setPlayStatus,
-        time, setTime,
-        play, pause,
-        playWithId,
-        previous,
-        next,
-        seekSong,
-        songsData,
-        albumsData
     }
 
     useEffect(() => {
@@ -119,6 +105,20 @@ const PlayerContextProvider = (props) =>{
         getSongsData();
         getAlbumsData();
     }, [])
+
+    const contextValue = {
+        audioRef, seekBar, seekBg,
+        track, setTrack,
+        playStatus, setPlayStatus,
+        time, setTime,
+        play, pause,
+        playWithId,
+        previous,
+        next,
+        seekSong,
+        songsData,
+        albumsData
+    }
 
     return(
         <PlayerContext.Provider value = {contextValue}>

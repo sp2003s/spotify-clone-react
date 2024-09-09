@@ -5,8 +5,7 @@ import SongItem from "./SongItem";
 import { PlayerContext } from "../context/PlayerContext";
 
 const DisplayHome = () => {
-
-  const {songsData, albumsData} = useContext(PlayerContext)
+  const {songsData, albumsData} = useContext(PlayerContext);
 
   return (
     <>
@@ -15,13 +14,13 @@ const DisplayHome = () => {
       <div className="mb-4">
         <h1 className="my-5 font-bold text-2xl">Featured Charts</h1>
         <div className="flex overflow-auto">
-          {albumsData.map((item, index) => (
+          {albumsData.map((items, index) => (
             <AlbumItem
               key={index}
-              name={item.name}
-              desc={item.desc}
-              id={item._id}
-              image={item.image}
+              name={items.name}
+              desc={items.desc}
+              id={items._id}
+              image={items.image}
             />
           ))}
         </div>
@@ -30,13 +29,13 @@ const DisplayHome = () => {
       <div className="mb-4">
         <h1 className="my-5 font-bold text-2xl">Today's biggest hits</h1>
         <div className="flex overflow-auto">
-          {songsData.map((item, index) => (
+          {songsData.map((items, index) => (
             <SongItem
               key={index}
-              name={item.name}
-              desc={item.desc}
-              id={item._id}
-              image={item.image}
+              name={items.name}
+              desc={items.desc}
+              id={items._id}
+              image={items.image}
             />
           ))}
         </div>
