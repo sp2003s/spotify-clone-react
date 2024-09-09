@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import {assets} from "../assets/frontend-assets/assets";
 import { PlayerContext } from "../context/PlayerContext";
 
-const DisplayAlbum = () => {
+const DisplayAlbum = ({album}) => {
   const { id } = useParams();
   const [albumData, setAlbumData] = useState("");
 
@@ -55,7 +55,7 @@ const DisplayAlbum = () => {
 
       <hr />
 
-      {songsData.map((item, index) => (
+      {songsData.filter((item) => item.album === album.name).map((item, index) => (
         <div
           onClick={() => playWithId(item.id)}
           key={index}
